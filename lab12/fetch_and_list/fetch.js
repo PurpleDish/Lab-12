@@ -1,12 +1,12 @@
 (function () {
     'use strict';
-    const url = 'https://jsonplaceholder.typicode.com/users'
- 	const proms = []
-    proms.push(fetch(url))
-    Promise.all(proms)
-    .then(results => results.map(res => res.json().then(addData)))
 
-    function addData(json) {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(json => {
+        addUsers(json)
+    })
+    function addUsers(json) {
  		const output = document.getElementById('output')
  		output.style.width = "100%"
  		output.style.display = "flex"
