@@ -21,21 +21,21 @@
 		next.className = 'nav-link active'
 		const planet = json[id.match(/\d+/)-1]
 		const information = document.getElementById('information')
+		while(information.childNodes[7].firstElementChild) {
+			information.childNodes[7].firstElementChild.remove()
+		}
 		for (let stat in planet.summary) {
-			console.log(stat)
 			let title = document.createElement("li")
 			let content = document.createElement("b")
-			title.innerText = stat+": "
-			content.innerText = planet.summary[stat]
-			title.appendChild(content)
+
+			content.innerText = stat+": "
+			title.innerText = planet.summary[stat]
+
+			title.insertBefore(content, title.firstChild)
 			information.childNodes[7].appendChild(title)
 		}
-
-
+		
 		information.childNodes[1].innerText = planet.name
 		information.childNodes[5].innerText = planet.details
-
-		console.log(planet)
-		console.log(information.childNodes)
 	}
 }());
