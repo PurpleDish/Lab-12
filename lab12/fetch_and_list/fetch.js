@@ -2,7 +2,7 @@
     'use strict';
     const url = 'https://jsonplaceholder.typicode.com/users'
  	const proms = []
-    proms.push(fetch(`${url}`))
+    proms.push(fetch(url))
     Promise.all(proms)
     .then(results => results.map(res => res.json().then(addData)))
 
@@ -16,9 +16,11 @@
 
 
  		for (var person in json) {
- 			console.log(json[person]["name"])
-	 		var newDiv = document.createElement("div")
+
+	 		const newDiv = document.createElement("div")
 	 		newDiv.className = 'user'
+	 		newDiv.id = json[person].id
+
 		    const id = document.createElement("h1")
 		    id.innerText = json[person].name
 
